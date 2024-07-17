@@ -17,16 +17,17 @@ services:
     restart: on-failure
     container_name: mixer.sphinx
     environment:
+      - TESTING_ONLY_ADD_TO_SENDER=1
       - SEED=8A048DC1F0020127E0E8DD72ACEFC62B8A048DC1F0020127E0E8DD72ACEFC62B
       - NETWORK=regtest
       - BROKER_URL=broker.sphinx:1883
       - NO_GATEWAY=true
       - NO_LIGHTNING=true
       - ROCKET_ADDRESS=0.0.0.0
-      - ROCKET_PORT=3000
+      - ROCKET_PORT=8888
       - DB_PATH=/home/data
     ports:
-      - 3000:3000
+      - 8888:8888
 
   alice:
     image: sphinxlightning/sphinx-bot:latest
