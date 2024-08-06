@@ -26,6 +26,7 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8888
       - DB_PATH=/home/data
+      - ADMIN_ROUTES=true
     ports:
       - 8888:8888
 

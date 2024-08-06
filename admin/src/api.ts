@@ -1,32 +1,22 @@
-const ADMIN_TOKEN = "xyzxyzxyz";
-const ROOT = "http://localhost:8000";
+import * as store from "./store";
+import { get } from "./utils";
 
-type Json = { [k: string]: any };
-async function post<T>(path: string, body: Json): Promise<T> {
-  const headers: Json = {
-    "Content-Type": "application/json",
-  };
-  if (path !== "authorize") {
-    headers["x-admin-token"] = ADMIN_TOKEN;
-  }
-  const r = await fetch(ROOT + "/" + path, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-  });
-  const j: T = await r.json();
-  return j;
+export const ADMIN_TOKEN = "xyzxyzxyz";
+export const ROOT = "http://localhost:8888/admin";
+
+interface UserRes {
+  users: store.User[];
 }
 
-async function get<T>(path: string): Promise<T> {
-  const headers: Json = {};
-  if (path !== "authorize") {
-    headers["x-admin-token"] = ADMIN_TOKEN;
-  }
-  const r = await fetch(ROOT + "/" + path, {
-    method: "GET",
-    headers,
-  });
-  const j: T = await r.json();
-  return j;
+export async function get_users(): Promise<UserRes> {
+  const res = await get<UserRes>("all");
+  store.users.set(res.users);
+  console.log("get_users", res);
+  return res;
+}
+
+export async function get_payments(pk: string): Promise<store.Pmt[]> {
+  const res = await get<store.Pmt[]>(`payments/${pk}`);
+  console.log("get_payments", res);
+  return res;
 }
