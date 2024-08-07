@@ -15,8 +15,12 @@ export async function get_users(): Promise<UserRes> {
   return res;
 }
 
-export async function get_payments(pk: string): Promise<store.Pmt[]> {
-  const res = await get<store.Pmt[]>(`payments/${pk}`);
-  console.log("get_payments", res);
-  return res;
+export async function get_payments(ok_key: string): Promise<store.Pmt[]> {
+  try {
+    const res = await get<store.Pmt[]>(`payments/${ok_key}`);
+    return res;
+  } catch (error) {
+    console.error("Error fetching payments:", error);
+    throw error;
+  }
 }
