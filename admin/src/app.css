@@ -1,3 +1,5 @@
+/* app.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,6 +14,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -19,4 +22,43 @@
   text-align: center;
 }
 
+.table-container {
+  margin: 0 auto;
+  padding: 1rem;
+}
 
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  overflow-wrap: break-word; /* Ensures long text fits within cells */
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #aaa;
+}
+
+.dropdown-row {
+  display: table-row;
+}
+
+.nested-table {
+  margin: 0;
+}
+
+.nested-table th, .nested-table td {
+  padding: 6px;
+}
+
+.active {
+}
